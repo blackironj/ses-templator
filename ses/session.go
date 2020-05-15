@@ -8,7 +8,7 @@ import (
 
 var EamilServiceSess *session.Session
 
-// NewSession  make new aws session
+// NewSession makes a new aws session
 func NewSession(id, key, region string) (*session.Session, error) {
 	s, err := session.NewSession(&aws.Config{
 		Region:      aws.String(region),

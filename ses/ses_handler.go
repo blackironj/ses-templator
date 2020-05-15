@@ -8,7 +8,8 @@ import (
 	sessdk "github.com/aws/aws-sdk-go/service/ses"
 )
 
-func GetSESTemplateList(page int) ([]*sessdk.TemplateMetadata, error) {
+// ListSEStemplates gets email-templates from AWS-SES
+func ListSEStemplates(page int) ([]*sessdk.TemplateMetadata, error) {
 	if EamilServiceSess == nil {
 		return nil, errors.New("fail to access")
 	}
@@ -27,7 +28,8 @@ func GetSESTemplateList(page int) ([]*sessdk.TemplateMetadata, error) {
 	return listTemplatesOutput.TemplatesMetadata, nil
 }
 
-func CreateSESTemplate(name, subj, htmlbody *string) error {
+// UploadSEStemplate uploads a email-template to AWS-SES
+func UploadSEStemplate(name, subj, htmlbody *string) error {
 	sesClient := sessdk.New(EamilServiceSess)
 
 	templ := &sessdk.Template{
@@ -45,4 +47,34 @@ func CreateSESTemplate(name, subj, htmlbody *string) error {
 		return err
 	}
 	return nil
+}
+
+// DeleteSEStemplate deletes a email-template from AWS-SES
+func DeleteSEStemplate(name *string) error {
+	sesClient := sessdk.New(EamilServiceSess)
+
+	deleteTemplateInput := &ses.DeleteTemplateInput{
+		TemplateName: name,
+	}
+
+	_, err := sesClient.DeleteTemplate(deleteTemplateInput)
+	if err != nil {
+		return err
+	}
+	return nil
+}
+
+// GetSEStemplate gets a specific email-template from AWS-SES
+func GetSEStemplate(name *string) (*sessdk.GetTemplateOutput, error) {
+	sesClient := sessdk.New(EamilServiceSess)
+
+	getTemplateInput := &ses.GetTemplateInput{
+		TemplateName: name,
+	}
+
+	getTemplateOutput, err := sesClient.GetTemplate(getTemplateInput)
+	if err != nil {
+		return nil, err
+	}
+	return getTemplateOutput, nil
 }
