@@ -9,16 +9,14 @@ import (
 )
 
 // ListSEStemplates gets email-templates from AWS-SES
-func ListSEStemplates(page int) ([]*sessdk.TemplateMetadata, error) {
+func ListSEStemplates(max int) ([]*sessdk.TemplateMetadata, error) {
 	if EamilServiceSess == nil {
 		return nil, errors.New("fail to access")
 	}
 	sesClient := sessdk.New(EamilServiceSess)
 
-	itemsFrom := (page * 10) - 9
-
 	listTemplatesInput := sessdk.ListTemplatesInput{
-		MaxItems: aws.Int64(int64(itemsFrom)),
+		MaxItems: aws.Int64(int64(max)),
 	}
 
 	listTemplatesOutput, err := sesClient.ListTemplates(&listTemplatesInput)
