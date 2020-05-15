@@ -1,5 +1,9 @@
 package main
 
+import (
+	"github.com/blackironj/ses-templator/cmd"
+)
+
 func main() {
-	//Do something
+	cmd.Execute()
 }

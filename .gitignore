@@ -442,5 +442,8 @@ MigrationBackup/
 ses-templator.exe
 ses-templator
 
+# vscode launch file
+.vscode
+
 
 # End of https://www.gitignore.io/api/visualstudio,jetbrains+all
