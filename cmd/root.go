@@ -12,7 +12,8 @@ import (
 )
 
 var (
-	keyFile string
+	keyFile      string
+	templateName string
 
 	rootCmd = &cobra.Command{
 		Use:   "ses-templator",
