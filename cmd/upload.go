@@ -66,6 +66,6 @@ var uploadCmd = &cobra.Command{
 func init() {
 	rootCmd.AddCommand(uploadCmd)
 
-	uploadCmd.Flags().StringVarP(&path, "path", "p", "", "upload template fiile path (required)")
+	uploadCmd.Flags().StringVarP(&path, "path", "p", "", "upload template file path (required)")
 	uploadCmd.MarkFlagRequired("path")
 }
