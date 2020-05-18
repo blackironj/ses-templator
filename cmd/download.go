@@ -16,18 +16,7 @@ var downloadCmd = &cobra.Command{
 	Use:   "down",
 	Short: "download the SES-email template",
 	Run: func(cmd *cobra.Command, args []string) {
-		var downloadPath string
-
-		if path == "" {
-			home, err := homedir.Dir()
-			if err != nil {
-				er(err)
-				return
-			}
-			downloadPath = home
-		} else {
-			downloadPath = path
-		}
+		downloadPath := path
 
 		templateOutput, getErr := ses.GetSEStemplate(&templateName)
 		if getErr != nil {
@@ -37,8 +26,14 @@ var downloadCmd = &cobra.Command{
 		}
 
 		if path == "" {
-			downloadPath = filepath.Join(downloadPath, *templateOutput.Template.TemplateName+".html")
+			home, err := homedir.Dir()
+			if err != nil {
+				er(err)
+				return
+			}
+			downloadPath = filepath.Join(home, *templateOutput.Template.TemplateName+".html")
 		}
+
 		fmt.Println(Green("Success to download template"))
 
 		fmt.Println("Template name : ", *templateOutput.Template.TemplateName)
