@@ -1,0 +1,5 @@
+{
+    "template_name" : "write a template name",
+    "subject" : "write a subject",
+    "html_path": "your/html/template/file/path"   
+}

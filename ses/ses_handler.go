@@ -27,17 +27,11 @@ func ListSEStemplates(max int) ([]*sessdk.TemplateMetadata, error) {
 }
 
 // UploadSEStemplate uploads a email-template to AWS-SES
-func UploadSEStemplate(name, subj, htmlbody *string) error {
+func UploadSEStemplate(sesTemplate *sessdk.Template) error {
 	sesClient := sessdk.New(EamilServiceSess)
 
-	templ := &sessdk.Template{
-		TemplateName: name,
-		SubjectPart:  subj,
-		TextPart:     htmlbody,
-	}
-
 	createTemplateInput := &ses.CreateTemplateInput{
-		Template: templ,
+		Template: sesTemplate,
 	}
 
 	_, err := sesClient.CreateTemplate(createTemplateInput)

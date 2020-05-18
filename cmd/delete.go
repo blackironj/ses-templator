@@ -30,6 +30,7 @@ var (
 
 			if !findFl {
 				fmt.Println(Red("Fail to find the name of template.\nPlease check the name"))
+				return
 			}
 
 			delErr := ses.DeleteSEStemplate(&templateName)
