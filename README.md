@@ -112,6 +112,21 @@ Global Flags:
 ./ses-templator up --key your/key/path -p your/upload-template-form/path
 ```
 
+# send a email using a unregistered html template
+```
+send a email using a unregistered html template
+
+Usage:
+  ses-templator send [flags]
+
+Flags:
+  -h, --help          help for send
+  -p, --path string   send config path (required)
+
+Global Flags:
+      --key string   access-key file (default is $HOME/.aws-access-key.json)
+```
+
 # Config
 ## aws-access-key.json
 ```json
@@ -127,6 +142,16 @@ Global Flags:
 {
     "template_name" : "signup_confirm_template",
     "subject" : "Hello {{user}}",
-    "html_path": "your/html/template/file/path" 
+    "html_path": "your/html/template/file/path"
+}
+```
+
+## send-config.json
+```json
+{
+    "sender" : "sender email address",
+    "recipient" : "recipient email address",
+    "subject" : "EMAIL SEND TEST",
+    "html_path": "your/html/template/file/path"
 }
 ```

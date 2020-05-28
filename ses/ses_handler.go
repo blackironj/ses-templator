@@ -70,3 +70,14 @@ func GetSEStemplate(name *string) (*sessdk.GetTemplateOutput, error) {
 	}
 	return getTemplateOutput, nil
 }
+
+// SendEmailWithUnregisteredTemplate sends a email using unregistered template
+func SendEmailWithUnregisteredTemplate(input *sessdk.SendEmailInput) error {
+	sesClient := sessdk.New(EamilServiceSess)
+
+	_, err := sesClient.SendEmail(input)
+	if err != nil {
+		return err
+	}
+	return nil
+}

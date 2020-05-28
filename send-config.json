@@ -1,0 +1,6 @@
+{
+    "sender" : "sender email address",
+    "recipient" : "recipient email address",
+    "subject" : "EMAIL SEND TEST",
+    "html_path": "your/html/template/file/path"
+}
